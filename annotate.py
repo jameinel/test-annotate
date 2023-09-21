@@ -1,4 +1,5 @@
 #!venv/bin/python3
+import asyncio
 import argparse
 import logging
 import sys
@@ -48,7 +49,7 @@ def parse_args(args):
     p.add_argument('--verbose', '-v', action="store_const", dest="loglevel", const=logging.INFO)
     p.add_argument('--quiet', action="store_const", dest="loglevel", const=logging.CRITICAL)
     p.add_argument('--sleep-before-disconnect', type=float, default=None, help='sleep briefly before disconnecting')
-    sub = p.add_subparsers()
+    sub = p.add_subparsers(required=True)
     getp = sub.add_parser('get')
     getp.set_defaults(func=get_annotations)
     getp.add_argument("key", help='the key to set', nargs='?')
